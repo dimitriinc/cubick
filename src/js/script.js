@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import gsap from 'gsap'
 
 THREE.ColorManagement.enabled = false
 
@@ -315,38 +316,14 @@ const cube27 = new THREE.Mesh(
 cube27.position.set(-1, -1, -1)
 scene.add(cube27)
 
+const cubies = [cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8, cube9, cube11, cube12, cube13, cube14, cube15, cube16, cube17, cube18, cube19, cube20, cube21, cube22, cube23, cube24, cube25, cube26, cube27]
 
-/**
- * Groups
- */
-
-const platformY1 = new THREE.Group()
-platformY1.add(cube1, cube2, cube3, cube4, cube5, cube6, cube7, cube8, cube9)
-scene.add(platformY1)
-
-const platformY2 = new THREE.Group()
-platformY2.add(cube11, cube12, cube13, cube14, cube15, cube16, cube17, cube18)
-scene.add(platformY2)
-
-const platformY3 = new THREE.Group()
-platformY3.add(cube19, cube20, cube21, cube22, cube23, cube24, cube25, cube26, cube27)
-scene.add(platformY3)
-
-
-// const platformX1 = new THREE.Group()
-// platformX1.add(cube7, cube8, cube9, cube16, cube17, cube18, cube25, cube26, cube27)
-// scene.add(platformX1)
 
 /**
  * Lights
  */
-
 const ambientLight = new THREE.AmbientLight('#ffffff', 3)
 scene.add(ambientLight)
-
-// const directionalLight = new THREE.DirectionalLight('#ffffff', 3)
-// directionalLight.castShadow = true
-// scene.add(directionalLight)
 
 
 /**
@@ -357,6 +334,10 @@ const sizes = {
     height: window.innerHeight
 }
 
+
+/**
+ * Event Listeners
+ */
 window.addEventListener('resize', () =>
 {
     // Update sizes
@@ -370,6 +351,112 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+let isAnimating = false
+
+const findCubie = (x, y, z) => {
+    for (const cubie of cubies) {
+        if (cubie.position.x === x && cubie.position.y === y && cubie.position.z === z) return cubie
+    }
+}
+
+const changeCubieX = (cubie, x, y, z) => {
+    cubie.position.set(x, y, z)
+    cubie.rotation.x += Math.PI * 0.5
+}
+const changeCubieY = (cubie, x, y, z) => {
+    cubie.position.set(x, y, z)
+    cubie.rotation.y += Math.PI * 0.5
+}
+
+document.addEventListener('keydown', event => {
+    if (isAnimating) return
+
+    if (event.key === 'f') {
+        isAnimating = true
+
+        // Construct platform
+        const cubie3 = findCubie(1, 1, -1)
+        const cubie4 = findCubie(1, 1, 0)
+        const cubie5 = findCubie(1, 1, 1)
+        const cubie12 = findCubie(1, 0, -1)
+        const cubie13 = findCubie(1, 0, 0)
+        const cubie14 = findCubie(1, 0, 1)
+        const cubie21 = findCubie(1, -1, -1)
+        const cubie22 = findCubie(1, -1, 0)
+        const cubie23 = findCubie(1, -1, 1)
+        const platform = new THREE.Group()
+        platform.add(cubie3, cubie4, cubie5, cubie12, cubie13, cubie14, cubie21, cubie22, cubie23)
+        scene.add(platform)
+
+        
+
+        // Animate platform
+        gsap.to(
+            platform.rotation,
+            {
+                duration: 0.5,
+                ease: 'power2.inOut',
+                x: `+=${Math.PI * 0.5}`,
+                onComplete: () => {
+                    isAnimating = false
+                },
+                onStart: () => {
+                    changeCubieX(cubie3, 1, 1, 1)
+                    changeCubieX(cubie4, 1, 0, 1)
+                    changeCubieX(cubie5, 1, -1, 1)
+                    changeCubieX(cubie12, 1, 1, 0)
+                    changeCubieX(cubie13, 1, 0, 0)
+                    changeCubieX(cubie14, 1, -1, 0)
+                    changeCubieX(cubie21, 1, 1, -1)
+                    changeCubieX(cubie22, 1, 0, -1)
+                    changeCubieX(cubie23, 1, -1, -1)
+                }
+            }
+        )
+    }
+
+    if (event.key === 'e') {
+        isAnimating = true
+
+        // Construct platform
+        const cubie1 = findCubie(0, 1, 0)
+        const cubie2 = findCubie(0, 1, -1)
+        const cubie3 = findCubie(1, 1, -1)
+        const cubie4 = findCubie(1, 1, 0)
+        const cubie5 = findCubie(1, 1, 1)
+        const cubie6 = findCubie(0, 1, 1)
+        const cubie7 = findCubie(-1, 1, 1)
+        const cubie8 = findCubie(-1, 1, 0)
+        const cubie9 = findCubie(-1, 1, -1)
+        const platform = new THREE.Group()
+        platform.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9)
+        scene.add(platform)
+
+        gsap.to(
+            platform.rotation,
+            {
+                duration: 0.5,
+                ease: 'power2.inOut',
+                y: `+=${Math.PI * 0.5}`,
+                onComplete: () => {
+                    isAnimating = false
+                },
+                onStart: () => {
+                    changeCubieY(cubie1, 0, 1, 0)
+                    changeCubieY(cubie2, -1, 1, 0)
+                    changeCubieY(cubie3, -1, 1, -1)
+                    changeCubieY(cubie4, 0, 1, -1)
+                    changeCubieY(cubie5, 1, 1, -1)
+                    changeCubieY(cubie6, 1, 1, 0)
+                    changeCubieY(cubie7, 1, 1, 1)
+                    changeCubieY(cubie8, 0, 0, 1)
+                    changeCubieY(cubie9, -1, 1, 1)
+                }
+            }
+        )
+    }
 })
 
 /**
@@ -404,9 +491,9 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
-    platformY1.rotation.y = - elapsedTime * 0.4
-    platformY2.rotation.y = elapsedTime * 0.8
-    platformY3.rotation.y = - elapsedTime * 1
+    // platformY1.rotation.y = - elapsedTime * 0.4
+    // platformY2.rotation.y = elapsedTime * 0.8
+    // platformY3.rotation.y = - elapsedTime * 1
 
     // platformX1.rotation.x = Math.cos(elapsedTime)
 
