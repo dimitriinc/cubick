@@ -78,6 +78,7 @@ const cube3 = new THREE.Mesh(
     })
 )
 cube3.position.set(1, 1, -1)
+cube3.name = "CUBE_3"
 scene.add(cube3)
 
 const cube4 = new THREE.Mesh(
@@ -390,9 +391,6 @@ document.addEventListener('keydown', event => {
         platform.add(cubie3, cubie4, cubie5, cubie12, cubie13, cubie14, cubie21, cubie22, cubie23)
         scene.add(platform)
 
-        
-
-        // Animate platform
         gsap.to(
             platform.rotation,
             {
@@ -400,9 +398,7 @@ document.addEventListener('keydown', event => {
                 ease: 'power2.inOut',
                 x: `+=${Math.PI * 0.5}`,
                 onComplete: () => {
-                    isAnimating = false
-                },
-                onStart: () => {
+                    
                     changeCubieX(cubie3, 1, 1, 1)
                     changeCubieX(cubie4, 1, 0, 1)
                     changeCubieX(cubie5, 1, -1, 1)
@@ -412,6 +408,14 @@ document.addEventListener('keydown', event => {
                     changeCubieX(cubie21, 1, 1, -1)
                     changeCubieX(cubie22, 1, 0, -1)
                     changeCubieX(cubie23, 1, -1, -1)
+
+                    platform.remove(cubie3, cubie4, cubie5, cubie12, cubie13, cubie14, cubie21, cubie22, cubie23)
+                    scene.add(cubie3, cubie4, cubie5, cubie12, cubie13, cubie14, cubie21, cubie22, cubie23)
+
+                    isAnimating = false
+
+                    scene.remove(platform)
+                    
                 }
             }
         )
@@ -434,6 +438,7 @@ document.addEventListener('keydown', event => {
         platform.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9)
         scene.add(platform)
 
+
         gsap.to(
             platform.rotation,
             {
@@ -441,9 +446,6 @@ document.addEventListener('keydown', event => {
                 ease: 'power2.inOut',
                 y: `+=${Math.PI * 0.5}`,
                 onComplete: () => {
-                    isAnimating = false
-                },
-                onStart: () => {
                     changeCubieY(cubie1, 0, 1, 0)
                     changeCubieY(cubie2, -1, 1, 0)
                     changeCubieY(cubie3, -1, 1, -1)
@@ -451,8 +453,15 @@ document.addEventListener('keydown', event => {
                     changeCubieY(cubie5, 1, 1, -1)
                     changeCubieY(cubie6, 1, 1, 0)
                     changeCubieY(cubie7, 1, 1, 1)
-                    changeCubieY(cubie8, 0, 0, 1)
+                    changeCubieY(cubie8, 0, 1, 1)
                     changeCubieY(cubie9, -1, 1, 1)
+
+                    platform.remove(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9)
+                    scene.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9)
+
+                    isAnimating = false
+
+                    scene.remove(platform)
                 }
             }
         )
