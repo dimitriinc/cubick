@@ -24,6 +24,23 @@ const alphaTexture = textureLoader.load('/textures/alpha.png')
 
 
 /**
+ * UI interactions
+ */
+const movesContainer = document.getElementById('movements')
+movesContainer.addEventListener('click', event => {
+    const moveSign = event.target.dataset.movement
+    eval(`move${moveSign}()`)
+    // switch (moveSign) {
+    //     case 'R': 
+    //         moveR()
+    //         break
+    //     default:
+    //         break
+    // }
+})
+
+
+/**
  * CUBIES
  */
 
@@ -1175,6 +1192,34 @@ const moveB$ = () => {
             }
         )
 }
+const moveX = () => {
+    isAnimating = true
+
+        const platform = new THREE.Group()
+        for (const i of cubies) platform.add(i)
+        scene.add(platform)
+
+        gsap.to(
+            platform.rotation,
+            {
+                duration: 0.5,
+                ease: 'power2.inOut',
+                x: `-=${Math.PI * 0.5}`,
+                onComplete: () => {
+                    platform.rotation.x -= Math.PI * 0.5
+                    for (const i of cubies) {
+                        i.rotation.x -= Math.PI * 0.5
+                        platform.remove(i)
+                        scene.add(i)
+                    }
+
+                    isAnimating = false
+
+                    scene.remove(platform)
+                }
+            }
+        )
+}
 
 /**
  * Movement events
@@ -1236,6 +1281,9 @@ document.addEventListener('keydown', event => {
             break
         case 'V':
             moveB$()
+            break
+        case 'q':
+            moveX()
             break
         default: break
     }
