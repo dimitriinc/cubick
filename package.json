@@ -9,6 +9,8 @@
     "deploy": "vercel --prod"
   },
   "devDependencies": {
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
     "vite": "^4.3.9"
   },
   "dependencies": {

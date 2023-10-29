@@ -14,5 +14,10 @@ export default {
         outDir: '../dist',
         emptyOutDir: true,
         sourcemap: true
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {}
+        }
     }
 }
