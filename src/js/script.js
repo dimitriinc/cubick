@@ -8,7 +8,6 @@ THREE.ColorManagement.enabled = false
  * Base
  */
 
-
 // Canvas
 const canvas = document.getElementById('cubick_canvas')
 
@@ -1253,7 +1252,15 @@ const moveX = () => {
         }
     )
 }
-const moveX$ = () => {
+const moveX$ = () => {rotateZonB(cubie2, -1, 0, -1)
+    rotateZonB(cubie3, -1, 1, -1)
+    rotateZonB(cubie9, -1, -1, -1)
+    rotateZonB(cubie11, 0, 0, -1)
+    rotateZonB(cubie12, 0, 1, -1)
+    rotateZonB(cubie18, 0, -1, -1)
+    rotateZonB(cubie20, 1, 0, -1)
+    rotateZonB(cubie21, 1, 1, -1)
+    rotateZonB(cubie27, 1, -1, -1)
 
     const cubie1 = findCubie(0, 1, 0)
     const cubie2 = findCubie(0, 1, -1)
@@ -1336,6 +1343,341 @@ const moveX$ = () => {
         }
     )
 }
+const moveY = () => {
+
+    const cubie1 = findCubie(0, 1, 0)
+    const cubie2 = findCubie(0, 1, -1)
+    const cubie3 = findCubie(1, 1, -1)
+    const cubie4 = findCubie(1, 1, 0)
+    const cubie5 = findCubie(1, 1, 1)
+    const cubie6 = findCubie(0, 1, 1)
+    const cubie7 = findCubie(-1, 1, 1)
+    const cubie8 = findCubie(-1, 1, 0)
+    const cubie9 = findCubie(-1, 1, -1)
+    const cubie10 = findCubie(0, 0, 0)
+    const cubie11 = findCubie(0, 0, -1)
+    const cubie12 = findCubie(1, 0, -1)
+    const cubie13 = findCubie(1, 0, 0)
+    const cubie14 = findCubie(1, 0, 1)
+    const cubie15 = findCubie(0, 0, 1)
+    const cubie16 = findCubie(-1, 0, 1)
+    const cubie17 = findCubie(-1, 0, 0)
+    const cubie18 = findCubie(-1, 0, -1)
+    const cubie19 = findCubie(0, -1, 0)
+    const cubie20 = findCubie(0, -1, -1)
+    const cubie21 = findCubie(1, -1, -1)
+    const cubie22 = findCubie(1, -1, 0)
+    const cubie23 = findCubie(1, -1, 1)
+    const cubie24 = findCubie(0, -1, 1)
+    const cubie25 = findCubie(-1, -1, 1)
+    const cubie26 = findCubie(-1, -1, 0)
+    const cubie27 = findCubie(-1, -1, -1)
+
+    const cube = new THREE.Group()
+    cube.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+        cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+    scene.add(cube)
+
+    gsap.to(
+        cube.rotation,
+        {
+            duration: 0.5,
+            ease: 'power2.inOut',
+            y: `-=${Math.PI * 0.5}`,
+            onComplete: () => {
+                
+                rotateYonU(cubie1, 0, 1, 0)
+                rotateYonU(cubie2, 1, 1, 0)
+                rotateYonU(cubie3, 1, 1, 1)
+                rotateYonU(cubie4, 0, 1, 1)
+                rotateYonU(cubie5, -1, 1, 1)
+                rotateYonU(cubie6, -1, 1, 0)
+                rotateYonU(cubie7, -1, 1, -1)
+                rotateYonU(cubie8, 0, 1, -1)
+                rotateYonU(cubie9, 1, 1, -1)
+                rotateYonU(cubie10, 0, 0, 0)
+                rotateYonU(cubie11, 1, 0, 0)
+                rotateYonU(cubie12, 1, 0, 1)
+                rotateYonU(cubie13, 0, 0, 1)
+                rotateYonU(cubie14, -1, 0, 1)
+                rotateYonU(cubie15, -1, 0, 0)
+                rotateYonU(cubie16, -1, 0, -1)
+                rotateYonU(cubie17, 0, 0, -1)
+                rotateYonU(cubie18, 1, 0, -1)
+                rotateYonU(cubie19, 0, -1, 0)
+                rotateYonU(cubie20, 1, -1, 0)
+                rotateYonU(cubie21, 1, -1, 1)
+                rotateYonU(cubie22, 0, -1, 1)
+                rotateYonU(cubie23, -1, -1, 1)
+                rotateYonU(cubie24, -1, -1, 0)
+                rotateYonU(cubie25, -1, -1, -1)
+                rotateYonU(cubie26, 0, -1, -1)
+                rotateYonU(cubie27, 1, -1, -1)
+
+                cube.remove(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+                scene.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+
+                isAnimating = false
+
+                scene.remove(cube)
+            }
+        }
+    )
+}
+const moveY$ = () => {
+
+    const cubie1 = findCubie(0, 1, 0)
+    const cubie2 = findCubie(0, 1, -1)
+    const cubie3 = findCubie(1, 1, -1)
+    const cubie4 = findCubie(1, 1, 0)
+    const cubie5 = findCubie(1, 1, 1)
+    const cubie6 = findCubie(0, 1, 1)
+    const cubie7 = findCubie(-1, 1, 1)
+    const cubie8 = findCubie(-1, 1, 0)
+    const cubie9 = findCubie(-1, 1, -1)
+    const cubie10 = findCubie(0, 0, 0)
+    const cubie11 = findCubie(0, 0, -1)
+    const cubie12 = findCubie(1, 0, -1)
+    const cubie13 = findCubie(1, 0, 0)
+    const cubie14 = findCubie(1, 0, 1)
+    const cubie15 = findCubie(0, 0, 1)
+    const cubie16 = findCubie(-1, 0, 1)
+    const cubie17 = findCubie(-1, 0, 0)
+    const cubie18 = findCubie(-1, 0, -1)
+    const cubie19 = findCubie(0, -1, 0)
+    const cubie20 = findCubie(0, -1, -1)
+    const cubie21 = findCubie(1, -1, -1)
+    const cubie22 = findCubie(1, -1, 0)
+    const cubie23 = findCubie(1, -1, 1)
+    const cubie24 = findCubie(0, -1, 1)
+    const cubie25 = findCubie(-1, -1, 1)
+    const cubie26 = findCubie(-1, -1, 0)
+    const cubie27 = findCubie(-1, -1, -1)
+
+    const cube = new THREE.Group()
+    cube.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+        cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+    scene.add(cube)
+
+    gsap.to(
+        cube.rotation,
+        {
+            duration: 0.5,
+            ease: 'power2.inOut',
+            y: `+=${Math.PI * 0.5}`,
+            onComplete: () => {
+                
+                rotateYonD(cubie1, 0, 1, 0)
+                rotateYonD(cubie2, -1, 1, 0)
+                rotateYonD(cubie3, -1, 1, -1)
+                rotateYonD(cubie4, 0, 1, -1)
+                rotateYonD(cubie5, 1, 1, -1)
+                rotateYonD(cubie6, 1, 1, 0)
+                rotateYonD(cubie7, 1, 1, 1)
+                rotateYonD(cubie8, 0, 1, 1)
+                rotateYonD(cubie9, -1, 1, 1)
+                rotateYonD(cubie10, 0, 0, 0)
+                rotateYonD(cubie11, -1, 0, 0)
+                rotateYonD(cubie12, -1, 0, -1)
+                rotateYonD(cubie13, 0, 0, -1)
+                rotateYonD(cubie14, 1, 0, -1)
+                rotateYonD(cubie15, 1, 0, 0)
+                rotateYonD(cubie16, 1, 0, 1)
+                rotateYonD(cubie17, 0, 0, 1)
+                rotateYonD(cubie18, -1, 0, 1)
+                rotateYonD(cubie19, 0, -1, 0)
+                rotateYonD(cubie20, -1, -1, 0)
+                rotateYonD(cubie21, -1, -1, -1)
+                rotateYonD(cubie22, 0, -1, -1)
+                rotateYonD(cubie23, 1, -1, -1)
+                rotateYonD(cubie24, 1, -1, 0)
+                rotateYonD(cubie25, 1, -1, 1)
+                rotateYonD(cubie26, 0, -1, 1)
+                rotateYonD(cubie27, -1, -1, 1)
+                
+
+                cube.remove(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+                scene.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+
+                isAnimating = false
+
+                scene.remove(cube)
+            }
+        }
+    )
+}
+const moveZ = () => {
+
+    const cubie1 = findCubie(0, 1, 0)
+    const cubie2 = findCubie(0, 1, -1)
+    const cubie3 = findCubie(1, 1, -1)
+    const cubie4 = findCubie(1, 1, 0)
+    const cubie5 = findCubie(1, 1, 1)
+    const cubie6 = findCubie(0, 1, 1)
+    const cubie7 = findCubie(-1, 1, 1)
+    const cubie8 = findCubie(-1, 1, 0)
+    const cubie9 = findCubie(-1, 1, -1)
+    const cubie10 = findCubie(0, 0, 0)
+    const cubie11 = findCubie(0, 0, -1)
+    const cubie12 = findCubie(1, 0, -1)
+    const cubie13 = findCubie(1, 0, 0)
+    const cubie14 = findCubie(1, 0, 1)
+    const cubie15 = findCubie(0, 0, 1)
+    const cubie16 = findCubie(-1, 0, 1)
+    const cubie17 = findCubie(-1, 0, 0)
+    const cubie18 = findCubie(-1, 0, -1)
+    const cubie19 = findCubie(0, -1, 0)
+    const cubie20 = findCubie(0, -1, -1)
+    const cubie21 = findCubie(1, -1, -1)
+    const cubie22 = findCubie(1, -1, 0)
+    const cubie23 = findCubie(1, -1, 1)
+    const cubie24 = findCubie(0, -1, 1)
+    const cubie25 = findCubie(-1, -1, 1)
+    const cubie26 = findCubie(-1, -1, 0)
+    const cubie27 = findCubie(-1, -1, -1)
+
+    const cube = new THREE.Group()
+    cube.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+        cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+    scene.add(cube)
+
+    gsap.to(
+        cube.rotation,
+        {
+            duration: 0.5,
+            ease: 'power2.inOut',
+            z: `-=${Math.PI * 0.5}`,
+            onComplete: () => {
+                
+                
+                rotateZonF(cubie5, 1, -1, 1)
+                rotateZonF(cubie6, 1, 0, 1)
+                rotateZonF(cubie7, 1, 1, 1)
+                rotateZonF(cubie14, 0, -1, 1)
+                rotateZonF(cubie15, 0, 0, 1)
+                rotateZonF(cubie16, 0, 1, 1)
+                rotateZonF(cubie23, -1, -1, 1)
+                rotateZonF(cubie24, -1, 0, 1)
+                rotateZonF(cubie25, -1, 1, 1)
+                rotateZonF(cubie1, 1, 0, 0)
+                rotateZonF(cubie4, 1, -1, 0)
+                rotateZonF(cubie8, 1, 1, 0)
+                rotateZonF(cubie10, 0, 0, 0)
+                rotateZonF(cubie13, 0, -1, 0)
+                rotateZonF(cubie17, 0, 1, 0)
+                rotateZonF(cubie19, -1, 0, 0)
+                rotateZonF(cubie22, -1, -1, 0)
+                rotateZonF(cubie26, -1, 1, 0)
+                rotateZonF(cubie2, 1, 0, -1)
+                rotateZonF(cubie3, 1, -1, -1)
+                rotateZonF(cubie9, 1, 1, -1)
+                rotateZonF(cubie11, 0, 0, -1)
+                rotateZonF(cubie12, 0, -1, -1)
+                rotateZonF(cubie18, 0, 1, -1)
+                rotateZonF(cubie20, -1, 0, -1)
+                rotateZonF(cubie21, -1, -1, -1)
+                rotateZonF(cubie27, -1, 1, -1)
+
+
+                cube.remove(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+                scene.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+
+                isAnimating = false
+
+                scene.remove(cube)
+            }
+        }
+    )
+}
+const moveZ$ = () => {
+
+    const cubie1 = findCubie(0, 1, 0)
+    const cubie2 = findCubie(0, 1, -1)
+    const cubie3 = findCubie(1, 1, -1)
+    const cubie4 = findCubie(1, 1, 0)
+    const cubie5 = findCubie(1, 1, 1)
+    const cubie6 = findCubie(0, 1, 1)
+    const cubie7 = findCubie(-1, 1, 1)
+    const cubie8 = findCubie(-1, 1, 0)
+    const cubie9 = findCubie(-1, 1, -1)
+    const cubie10 = findCubie(0, 0, 0)
+    const cubie11 = findCubie(0, 0, -1)
+    const cubie12 = findCubie(1, 0, -1)
+    const cubie13 = findCubie(1, 0, 0)
+    const cubie14 = findCubie(1, 0, 1)
+    const cubie15 = findCubie(0, 0, 1)
+    const cubie16 = findCubie(-1, 0, 1)
+    const cubie17 = findCubie(-1, 0, 0)
+    const cubie18 = findCubie(-1, 0, -1)
+    const cubie19 = findCubie(0, -1, 0)
+    const cubie20 = findCubie(0, -1, -1)
+    const cubie21 = findCubie(1, -1, -1)
+    const cubie22 = findCubie(1, -1, 0)
+    const cubie23 = findCubie(1, -1, 1)
+    const cubie24 = findCubie(0, -1, 1)
+    const cubie25 = findCubie(-1, -1, 1)
+    const cubie26 = findCubie(-1, -1, 0)
+    const cubie27 = findCubie(-1, -1, -1)
+
+    const cube = new THREE.Group()
+    cube.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+        cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+    scene.add(cube)
+
+    gsap.to(
+        cube.rotation,
+        {
+            duration: 0.5,
+            ease: 'power2.inOut',
+            z: `+=${Math.PI * 0.5}`,
+            onComplete: () => {
+                
+                rotateZonB(cubie5, -1, 1, 1)
+                rotateZonB(cubie6, -1, 0, 1)
+                rotateZonB(cubie7, -1, -1, 1)
+                rotateZonB(cubie14, 0, 1, 1)
+                rotateZonB(cubie15, 0, 0, 1)
+                rotateZonB(cubie16, 0, -1, 1)
+                rotateZonB(cubie23, 1, 1, 1)
+                rotateZonB(cubie24, 1, 0, 1)
+                rotateZonB(cubie25, 1, -1, 1)
+                rotateZonB(cubie1, -1, 0, 0)
+                rotateZonB(cubie4, -1, 1, 0)
+                rotateZonB(cubie8, -1, -1, 0)
+                rotateZonB(cubie10, 0, 0, 0)
+                rotateZonB(cubie13, 0, 1, 0)
+                rotateZonB(cubie17, 0, -1, 0)
+                rotateZonB(cubie19, 1, 0, 0)
+                rotateZonB(cubie22, 1, 1, 0)
+                rotateZonB(cubie26, 1, -1, 0)
+                rotateZonB(cubie2, -1, 0, -1)
+                rotateZonB(cubie3, -1, 1, -1)
+                rotateZonB(cubie9, -1, -1, -1)
+                rotateZonB(cubie11, 0, 0, -1)
+                rotateZonB(cubie12, 0, 1, -1)
+                rotateZonB(cubie18, 0, -1, -1)
+                rotateZonB(cubie20, 1, 0, -1)
+                rotateZonB(cubie21, 1, 1, -1)
+                rotateZonB(cubie27, 1, -1, -1)
+
+                cube.remove(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+                scene.add(cubie1, cubie2, cubie3, cubie4, cubie5, cubie6, cubie7, cubie8, cubie9, cubie10, cubie11, cubie12, cubie13, cubie14, 
+                    cubie15, cubie16, cubie17, cubie18, cubie19, cubie20, cubie21, cubie22, cubie23, cubie24, cubie25, cubie26, cubie27)
+
+                isAnimating = false
+
+                scene.remove(cube)
+            }
+        }
+    )
+}
 
 /**
  * Movement events
@@ -1403,6 +1745,18 @@ document.addEventListener('keydown', event => {
             break
         case 'Q':
             moveX$()
+            break
+        case 'a':
+            moveY()
+            break
+        case 'A':
+            moveY$()
+            break
+        case 'z':
+            moveZ()
+            break
+        case 'Z':
+            moveZ$()
             break
         default: 
             isAnimating = false
